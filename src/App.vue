@@ -8,6 +8,7 @@ const newName = ref('');
 const newAge = ref(0);
 function addPerson(){
   people.value.push({name: newName.value, age: newAge.value});
+  newName.value = '';
   newAge.value = 0;
 }
 const children = computed(() => people.value.filter(e => e.age < 18));
@@ -20,6 +21,7 @@ const numberOfChildren = computed(() => children.value.length);
 <input v-model="newName">
 <input v-model.number="newAge">
 <button @click="addPerson">Toevoegen</button>
+<h2>Personenlijsten</h2>
 <h3>Iedereen</h3>
 <ul>
   <li v-for="(person, index) in people" :key="index">{{ person.name }}: {{ person.age }}</li>
